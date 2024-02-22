@@ -1,0 +1,46 @@
+.navbar{
+  border-radius: 0;
+  margin-bottom: 0;
+}
+.modalBackdropHide{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100vw;
+    height:100vh;
+    background-color:rgba(0, 0, 0, 0.803);
+}
+/* ::ng-deep .offcanvas {}  use this if in component viewEncapsulation not used. */
+/* here in component encapsulation: ViewEncapsulation.None, is used so no need of ::ng-deep. */
+.offcanvas{
+  max-width: 260px; /* Adjust the width as needed */
+  background-color: rgba(0, 0, 0, 0.78);
+  color: antiquewhite;
+}
+.offcanvas ul{
+  padding-left: 0;
+  font-size:1rem;
+  margin-bottom: 0;
+}
+.offcanvas li{
+  list-style: none;
+  font-size:0.8rem;
+  background: #8a80ea;
+  color: honeydew;
+  border-radius: 4px;
+  margin-bottom: 3px;
+  padding-left: 4px;
+  cursor:pointer;
+}
+.offcanvas button{
+  font-size: 0.8rem;
+  padding:10px;
+  border-radius: 7px;
+}
+.offcanvas .accordion-body{
+  padding-bottom:10px;
+}
+.offcanvas ngb-accordion .accordion-item{
+  margin-bottom: 4px;
+  border-radius: 7px;
+}

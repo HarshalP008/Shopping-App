@@ -1,0 +1,57 @@
+<div class="row d-flex vh-100 justify-content-center m-0">
+    <div class="col-6 my-auto">
+      <div class="login shadow">
+        <div class="row">
+          <div class="col-12 col-sm-6 py-4">
+            <div class="text-center px-1 px-md-2">
+              <div class="login-text">
+                <h5><b>Login</b></h5>
+                <h6 class="pb-md-2">Welcome to Shopping App</h6>
+              </div>
+              <form class="form-outline px-3" [formGroup]="myLoginForm" (ngSubmit)="submit()">
+                  <div class="user-input">
+                    <i class="far fa-user icon me-1"></i>
+                    <input type="text" id="userName" class="form-control form-control-sm input-field" formControlName="userName" placeholder="Username">
+                  </div>
+                  <p *ngIf="!myLoginForm.get('userName').valid && myLoginForm.get('userName').touched" class="text-danger text-start mb-0">
+                    <span *ngIf="myLoginForm.get('userName')?.errors?.['required']">Username is required!</span>
+                    <span *ngIf="myLoginForm.get('userName')?.errors?.['minlength']">Minimun 4 characters required</span>
+                  </p>
+                  <div class="user-input mt-2">
+                    <i class="fa fa-lock icon me-1"></i>
+                    <input type="password" id="loginPassword" class="form-control form-control-sm input-field" formControlName="password" placeholder="Password">
+                  </div>
+                  <p *ngIf="!myLoginForm.get('password').valid && myLoginForm.get('password').touched" class="text-danger text-start mb-0">
+                    <span *ngIf="myLoginForm.get('password')?.errors?.['required']">Password required!</span>
+                    <!-- <span *ngIf="myLoginForm.get('password')?.errors?.['minlength']">Minimun 4 characters required</span> -->
+                  </p>
+                <div class="text-center my-3">
+                  <button type="submit" class="btn btn log-btn btn-sm" [disabled]="!myLoginForm.valid"><small>Login now</small></button>
+                </div>
+              </form>
+              <div class="text-center">
+                <h4 class="mb-3 login-opt"><span class="opt-line mb-3"><b>Login</b> with Others</span></h4>
+                <button class="btn btn-light btn-block text-primary mb-2 btn-sm"><i class="fa-brands fa-google me-2 text-primary"></i><small>Login with <b>Google</b></small></button>
+                <button class="btn btn-light btn-block text-primary mb-2 btn-sm"><i class="fa-brands fa-facebook fa-lg me-2 text-primary"></i><small>with <b>Facebook</b></small></button>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 side-image-sec d-flex justify-content-center d-none d-sm-block position-relative py-2 pe-4">
+            <img src="../../assets/images/ShopCartImage.jpeg" alt="Login-image" class="login-img mt-4">
+            <div class="image-dia mt-4 position-absolute top-0 start-0">
+              <h6 class="ms-4">"Welcome!, Shop Online and get exciting offers"</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div><h6 class="text-warning">Note: Use any username and password for User-Login</h6></div>
+</div>
+
+
+
+
+
+
+
+

@@ -1,0 +1,53 @@
+.card-img-top {
+    width: 100%;
+    height: 21vh;
+}
+.card{
+    align-items:center;
+    box-sizing: border-box;
+    margin:10px;
+    max-width:200px;
+    object-fit: cover;
+    background-color: rgba(236, 242, 182, 0.1);
+}
+.card-title{
+    overflow: hidden;
+    text-overflow:ellipsis;
+}
+.card-img-top:hover{
+    transform:scale(1.2);
+    transition:400ms;
+    z-index:1000;
+}
+.offerImg{
+    height:37vh;
+    width:auto;
+    object-fit:cover;
+}
+::ng-deep ngb-carousel .carousel-control-next-icon, ::ng-deep ngb-carousel .carousel-control-prev-icon{
+  background-color: #f032f7;
+}
+.productList-slider{
+    overflow: auto;
+}
+::-webkit-scrollbar{
+    height: 4px;
+    width: 4px;
+    background: gray;
+}
+::-webkit-scrollbar-track {
+  background: #fff; 
+}
+::-webkit-scrollbar-thumb:horizontal{
+    background: #f08eda;
+    border-radius: 10px;
+}
+
+::ng-deep .tooltip-inner {
+  background-color:springgreen;
+  color:black;
+}
+.card p{
+    font-size: 11px;
+    color:#5407fb;
+}

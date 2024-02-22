@@ -1,0 +1,70 @@
+<div class="row justify-content-center bg-warning mx-0">
+  <ngb-carousel>
+    <ng-template ngbSlide *ngFor="let item of heroImages">
+      <div class="d-flex justify-content-center">
+        <img [src]="item.image" alt="Random images" class="img-fluid d-block" style="height: 44vh; width: 87%"/>
+      </div>
+      <div class="carousel-caption text-warning">
+        <h6 class="text-bg-info text-light">Great Discounts On Products</h6>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+</div>
+<div class="container">
+  <div class="row mb-4 border-2 border-light shadow-sm">
+    <!-- <div *ngIf="!viewAll" class="col-sm-12 mb-1 d-flex justify-content-center justify-content-md-start ps-lg-4 flex-nowrap overflow-auto productList"> -->
+    <div [ngClass]="viewAll ? 'row mb-1 justify-content-center justify-content-md-start ps-lg-3':'col-sm-12 mb-1 d-flex justify-content-center justify-content-md-start ps-lg-4 flex-nowrap overflow-auto productList'">
+      <div *ngFor="let item of productList" class="card text-center col-12 col-sm-6 col-md-4 col-lg-3 shadow-sm rounded p-2">
+        <img class="card-img-top shadow-sm rounded" src={{item.productImage}} alt="product-image" alt="product-image">
+        <div class="card-body">
+          <h6 class="card-title text-light rounded bg-info">{{item.productName}}</h6>
+          <div class="bg-white rounded mb-1 overflow-hidden">
+            <p class="card-text mb-0 mb-2">Price: {{item.productPrice | currency}}/per Item</p>
+            <div class="mb-2 qty-btns">
+              <button class="btn btn-secondary decBtn btn-sm" (click)="decQty(item)"><strong>-</strong></button>
+              <span class="border border-light font-weight-bold shadow-sm px-2 pb-1">{{item.productQuantity}}</span>
+              <button class="btn btn-secondary incBtn btn-sm" (click)="incQty(item)"><strong>+</strong></button>
+            </div>
+            <p class="card-text mb-1"><strong>Total Price {{item.productPrice * item.productQuantity | currency}}</strong></p>
+            <button *ngIf="item.productQuantity > 0" class="btn btn-primary btn-sm" id="addBtn" (click)="addToBag(item)">Add To Bag</button>
+            <button *ngIf="item.productQuantity <= 0" class="btn btn-primary btn-sm" id="addBtn" triggers="click" [autoClose]="true" ngbTooltip="'Product quantity must be at least 1'"
+			        #tooltip1="ngbTooltip" (click)="addToBag(item)">Add To Bag</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12">
+      <div class="float-sm-end my-2">
+        <button class="btn border bg-primary text-light btn-sm" (click)="toggleView()">{{ viewAll ? 'View Less' : 'View All' }}</button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row justify-content-center my-4 pb-4">
+    <div class="col-12 col-sm-10 col-md-7">
+      <ngb-carousel>
+        <ng-template ngbSlide *ngFor="let item of productList">
+          <div class="d-flex justify-content-center">
+            <img [src]="item.productImage" alt="Random product images" class="img-fluid d-block"
+              style="height: 37vh; width: 60%;" />
+          </div>
+          <div class="carousel-caption text-warning">
+            <h6>Products on offers ({{item.productName}})</h6>
+          </div>
+        </ng-template>
+      </ngb-carousel>
+    </div>
+    <div class="col-md-4">
+      <div class="offerImg mt-1">
+        <img src="../../../assets/images/sale-banner-poster.jpg" class="img-fluid" style="height:38vh; width:96%">
+      </div>
+    </div>
+  </div>
+  <div class="row pb-4 mt-4">
+    <div class="col-md-12">
+      <div class="float-sm-end text-center">
+        <button class="btn border bg-primary text-light me-2 btn-sm" (click)="goToCart()">Go to cart</button>
+        <button class="btn border bg-danger text-light btn-sm" (click)="logOut()">Log Out</button>
+    </div>
+  </div>
+</div>
