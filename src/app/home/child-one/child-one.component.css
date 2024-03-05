@@ -51,3 +51,10 @@
     font-size: 11px;
     color:#5407fb;
 }
+.download-app-section img{
+    max-height: 100px;
+    max-width: 150px;
+}
+.download-app-section{
+    color:darkolivegreen;
+}

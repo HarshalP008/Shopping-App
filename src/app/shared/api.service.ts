@@ -87,7 +87,13 @@ export class ApiService {
     if(searchTerm !== null) {  // here Null used instead of '' for getting correct output result when no search text entered or erased //
       this.allProducts= this.dummyProducts.filter((prod: any) => prod.productName.toLowerCase().includes(searchTerm.toLowerCase()));
       console.log(this.allProducts);
-      this.allProducts$.next(this.allProducts);
+      if(this.allProducts.length){
+        this.allProducts$.next(this.allProducts);
+      }
+      else{
+        window.alert("searched item not found try different keywords");
+      }
+    
     }
   }
 }

@@ -17,13 +17,13 @@ export class RestrictedComponent implements OnInit {
       this.userLoggedIn =true;
       setTimeout(() => {
       this.router.navigate(['/home']);
-    }, 2000);
+    }, 4000);
     }else{
       this.userLoggedIn =false;
       alert("Please Login using correct credentials");
       setTimeout(() => {
       this.router.navigate(['/login']);
-    }, 2000);
+    }, 4000);
     }
   }
 

@@ -19,6 +19,7 @@ export class ChildOneComponent implements OnInit, OnDestroy {
   private unsubscribe$= new Subject<void>();
   //for offline data- without API/Firebase
   public viewAll: Boolean = false;
+  public ProductsOnOffer: any = [];
   public heroImages = [
     {
       "image":"../../assets/images/mega-sale-banner.avif",
@@ -39,6 +40,7 @@ export class ChildOneComponent implements OnInit, OnDestroy {
   
   ngOnInit(): void {
     this.getProductList();
+    this.ProductsOnOffer = this.httpServ.dummyProducts;
   }
     //Get data Using API call/Firebase
   //   getProductList(){
@@ -70,7 +72,8 @@ export class ChildOneComponent implements OnInit, OnDestroy {
 
   incQty(item:any){
     //item.productQuantity +=1; gives string value =01 011
-    item.productQuantity++;
+    if(item.productQuantity < 10)
+    {item.productQuantity++;}
   }
 
   decQty(item:any){
