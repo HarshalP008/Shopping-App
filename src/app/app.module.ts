@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,8 +13,10 @@ import { ChildOneComponent } from './home/child-one/child-one.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { ClientListComponent } from './client-list/client-list.component';
 import { FooterComponent } from './home/footer/footer.component';
-import { NgbCarousel, NgbCarouselModule, NgbDropdown, NgbDropdownModule, NgbDropdownToggle, NgbModal, NgbModalModule, NgbModule, NgbToastModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAccordionModule, NgbCarousel, NgbCarouselModule, NgbDropdown, NgbDropdownModule, NgbDropdownToggle, NgbModal, NgbModalModule, NgbModule, NgbToastModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastComponent } from './toast/toast.component';
+import { ClientBillsComponent } from './client-bills/client-bills.component';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -31,6 +33,7 @@ import { ToastComponent } from './toast/toast.component';
     ClientListComponent,
     FooterComponent,
     ToastComponent,
+    ClientBillsComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,9 +46,12 @@ import { ToastComponent } from './toast/toast.component';
     NgbCarouselModule,
     NgbDropdownModule,
     NgbTooltipModule,
-    NgbToastModule
+    NgbAccordionModule,
+    NgbToastModule,
+    CommonModule,
   ],
   providers: [NgbModal, NgbCarousel,NgbDropdown, NgbDropdownToggle],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule { }

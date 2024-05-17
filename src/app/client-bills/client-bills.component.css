@@ -1,0 +1,82 @@
+ul li{
+  list-style:none;
+}
+a{
+  text-decoration:none;
+}
+
+::ng-deep ngb-accordion .accordion-item {
+    margin-bottom: 4px;
+    border: 2px solid #c3bdbd;
+    border-radius: 4px;
+}
+
+::ng-deep ngb-accordion .accordion-item .accordion-button {
+    border-radius: 0 !important;
+    background-color: #7abf97;
+}
+::ng-deep ngb-accordion .accordion-item .accordion-body{
+  background-color: #fffdfd !important;
+  color: #000000;
+}
+
+
+::ng-deep .billing-details ngb-accordion .accordion-item .accordion-button, ::ng-deep .billing-details ngb-accordion .accordion-item .accordion-body{
+    background: #fff !important;
+  }
+
+::ng-deep .billing-details ngb-accordion .accordion-item{
+    background: #8f8f8f;
+    color: #000;
+}
+::ng-deep .billing-details ngb-accordion .accordion-item{
+  margin-bottom:0 !important;
+}
+
+.paymentHistorySection p,.PaymentHistorySection h6{
+  font-size:11px;
+}
+
+.billAccHeading div, .billData-headers div, .billData-headers th{
+  font-size:11px;
+}
+
+.billData-headers div, .billData-headers th{
+  cursor:pointer;
+}
+
+::ng-deep .billsAccordion ngb-accordion .accordion-button div{
+  font-size:11px;
+}
+::ng-deep .billsAccordion ngb-accordion .accordion-button::before, ::ng-deep .billsAccordion ngb-accordion .accordion-button::after{
+  display:block;
+}
+
+.billing-table h6, .billing-table p, .bill-compName p{
+  padding-bottom:0;
+  padding-top:0;
+  margin-bottom:10px;
+  font-size:10px;
+  line-height:15px;
+}
+
+.billing-table td{
+  padding-top:0;
+  padding-bottom:0;
+  line-height:15px;
+  border:none;
+}
+
+.bill-compName h3{
+  color:purple;
+}
+
+.billing-table .takeActBtn{
+  color:#fff;
+  background-color: #5cba83;
+}
+::ng-deep .billsAccordion ngb-accordion .tooltip .tooltip-inner{
+  width:120px;
+  background-color: #000;
+  transform: translate(20%,0);
+}

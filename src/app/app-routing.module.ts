@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { AuthGuard } from './auth.guard';
 import { ClientListComponent } from './client-list/client-list.component';
+import { ClientBillsComponent } from './client-bills/client-bills.component';
 
 const routes: Routes = [
   {path:"", component:LoginComponent},
@@ -18,6 +19,7 @@ const routes: Routes = [
     {path:"childOne", component:ChildOneComponent}
   ]},
   {path:"clientList", canActivate:[AuthGuard], component:ClientListComponent},
+  {path:"client-bills", canActivate:[AuthGuard], component:ClientBillsComponent},
   {path:"shop-cart", component:ShopCartComponent},
   {path:"pageNotFound", component:PagenotfoundComponent},
   {path:"restricted", component:RestrictedComponent},

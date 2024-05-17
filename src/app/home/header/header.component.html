@@ -1,21 +1,21 @@
 <nav class="navbar sticky-top navbar-expand-sm navbar-light bg-primary shadow-sm">
   <span style="cursor: pointer;" (click)="openSidebar(sideBarContent)"><i class="fa fa-bars ps-2"></i></span>
   <img class="me-auto ps-2" src="../../assets/images/SampleLogo.png" style="height: 37px; width:97px; cursor: pointer;" routerLink="/home">
-  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="my-1 mx-2">
-    <h6 class="text-light mb-2 mx-2 d-inline">Search Product</h6>
-    <input class="serchProduct text-success" type="text" [(ngModel)]="searchProduct" (change)="searchProd()" placeholder="Enter text to search..">
+  <div class="my-1 ps-2 ms-2 border bg-primary searchProduct">
+    <i class="fas fa-search text-light me-2 mt-1"></i>
+    <input class="text-success" type="text" [(ngModel)]="searchProduct" (change)="searchProd()" placeholder="Enter text to search item..">
   </div>
   <div class="collapse navbar-collapse px-2" id="navbarSupportedContent">
     <div class="navbar-nav ms-auto">
-      <button type="button" class="btn btn-warning mt-2 mt-md-0 me-sm-2 btn-sm" id="HomePageBtn" routerLink="/home">
+      <button type="button" class="btn btn-warning mt-1 mt-md-0 me-sm-2 btn-sm" id="HomePageBtn" routerLink="/home">
         Home</button>
       <button type="button" *ngIf='loggedInUser.userName=="admin"' class="btn btn-warning mt-2 mt-md-0 me-sm-2 btn-sm" id="AddItemBtn" (click)="openSm(content)">
         Add Products</button>
-      <button *ngIf='loggedInUser.userName=="admin"' class="btn btn-warning mt-2 mt-md-0 me-sm-2 btn-sm" routerLink="/clientList">Client List</button>
-      <button class="btn btn-danger mt-2 mt-md-0 btn-sm" id="myCartBtn" routerLink="/shop-cart">
+      <button *ngIf='loggedInUser.userName=="admin"' class="btn btn-warning mt-1 mt-md-0 me-sm-2 btn-sm" routerLink="/clientList">Client List</button>
+      <button class="btn btn-danger mt-1 mt-md-0 btn-sm" id="myCartBtn" routerLink="/shop-cart">
         <span class="position-relative"><i class="fa fa-shopping-cart pe-4"></i>
           <span class="badge badge-pill bg-success rounded-pill position-absolute start-0 ms-3">{{+totalItemsInCart}}</span></span>My cart</button>
     </div>
