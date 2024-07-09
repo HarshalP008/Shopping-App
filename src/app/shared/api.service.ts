@@ -92,8 +92,7 @@ export class ApiService {
       }
       else{
         window.alert("searched item not found try different keywords");
-      }
-    
+      }    
     }
   }
 }

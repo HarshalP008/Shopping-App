@@ -13,7 +13,7 @@ import { LoginService } from 'src/app/shared/login.service';
   encapsulation: ViewEncapsulation.None,
 })
 export class HeaderComponent implements OnInit {
-  public myForm : FormGroup | any; 
+  public myForm : FormGroup | any;
   public productList:any[]= [];
   public cartDataList:any= [];
   public loggedInUser: any ='';

@@ -1,36 +1,65 @@
-<div class="row text-primary mb-4 vh-100">
-  <div class="col-md-4 clientList">
-    <ol>
-      <li>Abc</li>
-      <li>Def</li>
-      <li>Dell</li>
-      <li>Samsung</li>
-      <li>Etc</li>
-      <li>Etc</li>
-      <li>Etc</li>
-    </ol>
+<div class="row py-2">
+  <div class="col-sm-12 text-center">
+    <h6 class="text-primary">Client Data</h6>
   </div>
-  <div class="col-md-4 clientList">
-    <ol>
-      <li>Abc</li>
-      <li>Def</li>
-      <li>Dell</li>
-      <li>Samsung</li>
-      <li>Etc</li>
-      <li>Etc</li>
-      <li>Etc</li>
-    </ol>
+  <div *ngIf="!userData.length" class="col-sm-12 text-center mb-2">
+    <h6 class="text-primary px-md-4">No Client added</h6>
+    <div class="d-flex col-sm-12 justify-content-center mt-4">
+      <button class="btn border bg-primary text-light p-1 btn-sm" (click)="openSm(content)">Add Client</button>
+    </div>
   </div>
-  <div class="col-md-4 clientList">
-    <ol>
-      <li>Abc</li>
-      <li>Def</li>
-      <li>Dell</li>
-      <li>Samsung</li>
-      <li>Etc</li>
-      <li>Etc</li>
-      <li>Etc</li>
-    </ol>
+  <div *ngIf="userData.length" class="row mb-2 px-0">
+    <div class="col-sm-3 mb-2 ps-2 ms-5 searchProduct">
+      <input class="text-success" type="text" [(ngModel)]="searchTerm" (change)="searchUser()"
+        placeholder="Search Client...">
+    </div>
+    <div class="table-responsive col-md-11 mx-4">
+      <table class="table table-bordered table-striped table-hover">
+        <thead class="bg-dark text-light">
+          <tr class="text-center">
+            <th scope="col">Sr. No.</th>
+            <th scope="col">Client Id</th>
+            <th scope="col" colspan="2">Name</th>
+            <th scope="col">City</th>
+            <th scope="col">Email-Id</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="text-center" *ngFor="let user of paginatedUserData; let i=index">
+            <td>{{i+1}}</td>
+            <td>{{user.id}}</td>
+            <td scope="col" colspan="2">{{user.fName}} {{user.lName}}</td>
+            <td>{{user.city}}</td>
+            <td class="text-primary">{{user.email}}</td>
+            <td class="text-center">
+              <button class="btn btn-primary actionBtn btn-sm text-light mb-2 mb-md-0" ngbTooltip="Edit User" (click)="editUser(user)"><i
+                  class="fas fa-pencil-alt"></i></button>
+              <button class="btn actionBtn btn-sm text-danger border-primary mx-2" (click)="deletUser(user)"
+                ngbTooltip="Delete"><i class="fas fa-trash-alt"></i></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="row justify-content-center p-2">
+        <div class="col-sm-4">
+          <ngb-pagination [collectionSize]="userData.length" [(page)]="currentPage" [pageSize]="pageSize"
+            (pageChange)="onPageChange($event)">
+          </ngb-pagination>
+        </div>
+        <div class="col-sm-2">
+          <select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="onPageChange($event)">
+            <option [ngValue]="5">5 items per page</option>
+            <option [ngValue]="10">10 items per page</option>
+            <option [ngValue]="15">15 items per page</option>
+          </select>
+        </div>
+      </div>
+      <div class="d-flex"
+        [ngClass]="!userData.length? 'col-sm-12 justify-content-center':'col-sm-12 justify-content-end'">
+        <button class="btn btn-sm btn-primary addBtn" (click)="openSm(content)">Add Client</button>
+      </div>
+    </div>
   </div>
 </div>
 <div class="row">
@@ -41,4 +70,58 @@
     </div>
   </div>
 </div>
-<app-footer></app-footer>
+
+<ng-template #content let-modal>
+  <div class="modal-dialog m-3">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-light py-0">
+        <h5 class="modal-title">Add User</h5>
+        <button type="button" class="close btn btn-sm text-light" aria-label="Close" (click)="formModalClose()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="fName">First Name</label>
+            <input type="text" class="form-control-sm" id="fName" name="fName" formControlName="fName">
+            <small *ngIf="!userForm.get('fName')?.valid && userForm.get('fName')?.touched"
+              class="form-text text-danger">
+              <span *ngIf="userForm.get('fName')?.errors?.['required']">Name is required!</span>
+              <span *ngIf="userForm.get('fName')?.errors?.['pattern']">Please enter alphabets only</span>
+            </small>
+          </div>
+          <div class="form-group my-2">
+            <label for="lName">Last Name</label>
+            <input type="text" class="form-control-sm" id="lName" name="lName" formControlName="lName">
+            <small *ngIf="!userForm.get('lName')?.valid && userForm.get('lName')?.touched"
+              class="form-text text-danger">
+              <span *ngIf="userForm.get('lName')?.errors?.['required']">Name is required!</span>
+              <span *ngIf="userForm.get('lName')?.errors?.['pattern']">Please enter alphabets only</span>
+            </small>
+          </div>
+          <div class="form-group my-2">
+            <label for="email">Email-Id</label>
+            <input type="text" class="form-control-sm" id="email" name="email" formControlName="email">
+            <small *ngIf="!userForm.get('email')?.valid && userForm.get('email')?.touched"
+              class="form-text text-danger">
+              <span *ngIf="userForm.get('email')?.errors?.['required']"> Email-Id is Required!</span>
+              <span *ngIf="userForm.get('email')?.errors?.['pattern']"> Please enter proper email-id</span>
+            </small>
+          </div>
+          <div class="form-group my-2">
+            <label for="city">City</label>
+            <input type="text" class="form-control-sm" id="city" name="city" formControlName="city">
+            <small *ngIf="!userForm.get('city')?.valid && userForm.get('city')?.touched" class="form-text text-danger">
+              <span *ngIf="userForm.get('city')?.errors?.['required']">City name is Required!</span>
+            </small>
+          </div>
+          <div class="d-flex justify-content-between mt-4">
+            <button type="submit" class="btn btn-primary btn-sm me-2" [disabled]="!userForm.valid">Submit</button>
+            <button type="button" class="btn btn-danger btn-sm" (click)="formModalClose()">Close</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</ng-template>

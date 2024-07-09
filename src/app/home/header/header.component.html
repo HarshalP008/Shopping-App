@@ -1,12 +1,12 @@
 <nav class="navbar sticky-top navbar-expand-sm navbar-light bg-primary shadow-sm">
-  <span style="cursor: pointer;" (click)="openSidebar(sideBarContent)"><i class="fa fa-bars ps-2"></i></span>
+  <span style="cursor: pointer;" (click)="openSidebar(sideBarContent)"><i class="fa fa-bars px-2"></i></span>
   <img class="me-auto ps-2" src="../../assets/images/SampleLogo.png" style="height: 37px; width:97px; cursor: pointer;" routerLink="/home">
   <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="my-1 ps-2 ms-2 border bg-primary searchProduct">
     <i class="fas fa-search text-light me-2 mt-1"></i>
-    <input class="text-success" type="text" [(ngModel)]="searchProduct" (change)="searchProd()" placeholder="Enter text to search item..">
+    <input class="text-success" type="text" [(ngModel)]="searchProduct" (keyup)="searchProd()" placeholder="Enter text to search item..">
   </div>
   <div class="collapse navbar-collapse px-2" id="navbarSupportedContent">
     <div class="navbar-nav ms-auto">
