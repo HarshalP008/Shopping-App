@@ -17,17 +17,18 @@ export class ClientListComponent implements OnInit {
   userForm: FormGroup | any;
   searchTerm: string = '';
   filteredList !: any;
-  unsubscribe$= new Subject<void>();
-  paginatedUserData: any[]= [];
+  unsubscribe$ = new Subject<void>();
+  paginatedUserData: any[] = [];
   currentPage: number = 1;
   pageSize: number = 5;
-  
-  constructor(private fb: FormBuilder, private modalService: NgbModal, private userServ: UserService) {}
+
+  constructor(private fb: FormBuilder, private modalService: NgbModal, private userServ: UserService) { }
 
   ngOnInit(): void {
     this.userForm = this.fb.group({
-      fName: ['', [Validators.required,Validators.pattern("^[a-zA-Z]*$")]],
-      lName: ['', [Validators.required,Validators.pattern("^[a-zA-Z]*$")]],
+      id: '',
+      fName: ['', [Validators.required, Validators.pattern("^[a-zA-Z]*$")]],
+      lName: ['', [Validators.required, Validators.pattern("^[a-zA-Z]*$")]],
       email: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}')]],
       city: ['', Validators.required]
     });
@@ -36,14 +37,12 @@ export class ClientListComponent implements OnInit {
   }
 
   onSubmit() {
-    let randumNum = new Date().getUTCDate().toString() + new Date().getTime().toString();
-    let id = randumNum + (Math.floor(Math.random() *10000) +1); // Generates id for users using fullyear
-    let newUser= {...this.userForm.value,id};
-    this.userServ.addUser(newUser);
+    this.userServ.addUser(this.userForm.value);
     this.userForm.reset();
     this.getUserList();
+    this.formModalClose();
   }
-  
+
   formModalClose() {
     this.userForm.reset();
     this.modalService.dismissAll();
@@ -53,18 +52,19 @@ export class ClientListComponent implements OnInit {
     this.modalService.open(content, { size: 'sm' });
   }
 
-  getUserList(){
-    this.userServ.getUsersData().pipe(takeUntil(this.unsubscribe$)).subscribe((data : any)=>{
-    this.userData = data;
-    this.updatePaginatedData()
+  getUserList() {
+    this.userServ.getUsersData().pipe(takeUntil(this.unsubscribe$)).subscribe((data: any) => {
+      this.userData = data;
+      this.updatePaginatedData()
     })
   }
 
-  editUser(user: any){
+  editUserData(user: any) {
     this.userForm.patchValue(user);
     this.openSm(this.content);
+    this.userServ.isEditMode = true;
   }
-  
+
   deletUser(user: any) {
     this.userServ.removeUser(user);
     this.updatePaginatedData();
@@ -74,7 +74,7 @@ export class ClientListComponent implements OnInit {
     this.userServ.search(this.searchTerm);
   }
 
-  onPageChange(page:any) {
+  onPageChange(page: any) {
     // this.currentPage = page; // shows last page of pagination
     this.updatePaginatedData();
   }
