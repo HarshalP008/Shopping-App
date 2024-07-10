@@ -17,6 +17,8 @@ import { NgbAccordionModule, NgbCarousel, NgbCarouselModule, NgbDropdown, NgbDro
 import { ToastComponent } from './toast/toast.component';
 import { ClientBillsComponent } from './client-bills/client-bills.component';
 import { CommonModule } from '@angular/common';
+import { UserService } from './shared/user.service';
+import { CartServiceService } from './shared/cart-service.service';
 
 
 
@@ -50,7 +52,7 @@ import { CommonModule } from '@angular/common';
     NgbToastModule,
     CommonModule,
   ],
-  providers: [NgbModal, NgbCarousel,NgbDropdown, NgbDropdownToggle],
+  providers: [NgbModal, NgbCarousel,NgbDropdown, NgbDropdownToggle,UserService,CartServiceService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
