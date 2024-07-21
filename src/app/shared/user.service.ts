@@ -28,7 +28,6 @@ export class UserService {
       let newUser = { ...user, id };
       this.usersList.push(newUser);
       alert('New Client Added')
-      if(!localStorage.getItem('usersData'))
       localStorage.setItem("usersData", JSON.stringify(this.usersList));
   }
   
