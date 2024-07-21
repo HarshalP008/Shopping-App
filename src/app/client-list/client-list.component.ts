@@ -21,6 +21,7 @@ export class ClientListComponent implements OnInit {
   paginatedUserData: any[] = [];
   currentPage: number = 1;
   pageSize: number = 5;
+  isEditMode: boolean = false;
 
   constructor(private fb: FormBuilder, private modalService: NgbModal, private userServ: UserService) { }
 
@@ -37,10 +38,15 @@ export class ClientListComponent implements OnInit {
   }
 
   onSubmit() {
-    this.userServ.addUser(this.userForm.value);
+    if(this.isEditMode){
+      this.userServ.editUser(this.userForm.value);
+      this.isEditMode = false;
+    }else{ 
+      this.userServ.addUser(this.userForm.value);
+    }
     this.userForm.reset();
-    this.getUserList();
     this.formModalClose();
+    this.getUserList();    
   }
 
   formModalClose() {
@@ -53,21 +59,28 @@ export class ClientListComponent implements OnInit {
   }
 
   getUserList() {
-    this.userServ.getUsersData().pipe(takeUntil(this.unsubscribe$)).subscribe((data: any) => {
-      this.userData = data;
-      this.updatePaginatedData()
-    })
+    this.userData = this.userServ.getUsersData(); // Using Localstorage data
+    this.updatePaginatedData();
   }
+  // getUserList() {
+  //   //Using observable subscibe method
+  //   this.userServ.getUsersData().pipe(takeUntil(this.unsubscribe$)).subscribe((data: any) => {
+  //     this.userData = data;
+  //     this.updatePaginatedData()
+  //   })
+  // }
 
   editUserData(user: any) {
+    this.isEditMode = true;
     this.userForm.patchValue(user);
     this.openSm(this.content);
-    this.userServ.isEditMode = true;
+    this.getUserList();
   }
 
   deletUser(user: any) {
     this.userServ.removeUser(user);
     this.updatePaginatedData();
+    this.getUserList();
   }
 
   searchUser() {

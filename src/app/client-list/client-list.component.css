@@ -1,7 +1,14 @@
 .clientList{
   background-color:beige;
+  font-size:11px;
 }
 .clientList li{
   font-size:small;
   background-color:beige;
+}
+.actionBtn{
+  padding:1px 6px;
+}
+button{
+  font-size: 15px;
 }
