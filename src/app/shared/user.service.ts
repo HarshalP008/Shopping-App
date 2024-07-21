@@ -11,7 +11,7 @@ export class UserService {
   filteredList: any = [];
 
   constructor(private toastServ: ToastService) {
-    this.usersList = JSON.parse(localStorage.getItem('usersData') || '');
+    // this.usersList = JSON.parse(localStorage.getItem('usersData') || '');
   }
 
   getUsersData() {
@@ -28,6 +28,7 @@ export class UserService {
       let newUser = { ...user, id };
       this.usersList.push(newUser);
       alert('New Client Added')
+      if(!localStorage.getItem('usersData'))
       localStorage.setItem("usersData", JSON.stringify(this.usersList));
   }
   

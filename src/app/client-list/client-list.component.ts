@@ -8,7 +8,8 @@ import { UserService } from '../shared/user.service';
 @Component({
   selector: 'app-client-list',
   templateUrl: './client-list.component.html',
-  styleUrls: ['./client-list.component.css']
+  styleUrls: ['./client-list.component.css'],
+  providers:[UserService]
 })
 
 export class ClientListComponent implements OnInit {
